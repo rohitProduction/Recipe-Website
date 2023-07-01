@@ -1,0 +1,78 @@
+nav {
+    font-family: "AndikaBold";
+    font-size: 1.5em;
+    background-color: #282c34;
+    /* border-radius: 0px 0px 30px 30px; */
+    border-color: red;
+    margin-bottom: 20px;
+}
+
+.navbar{
+    position: fixed;
+    width: 100%; 
+    top:0;
+}
+
+.brand .nav-link{
+    margin-left: 50px;
+    padding-top: 0px;
+}
+
+.nav-items ul{
+    display: flex;
+    list-style-type: none;
+}
+
+.nav-items li{
+    display: flex;
+    list-style-type: none;
+    margin-right: 50px;
+}
+.nav-link{
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    padding-top: 10px;
+}
+
+.nav-link:hover, 
+.nav-link:visited{
+    color: white;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 4px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+
+  
+  .nav-items .search input[type="search"] {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 5px;
+  }
+  
+.search{
+    margin-top: 5px;
+}
+
+.search button {
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

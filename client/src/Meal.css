@@ -1,0 +1,145 @@
+.meal-content {
+  font-family: "AndikaBold";
+}
+
+.meal-mealName {
+  text-align: center;
+  font-size: 3em;
+  padding:30px
+}
+
+.meal-image{
+  float: left;
+  margin-right: 1rem;
+}
+
+.meal-content section {
+  display: flow-root;
+  padding: 2rem;
+}
+
+.meal-content ul{
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 1em;
+  column-gap: 1em;
+  padding: 0;
+  margin: 0;
+}
+
+.meal-content li {
+  font-family: "AndikaBold";
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ingredient-title{
+  text-align: center;
+}
+
+
+/* .meal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.meal-mealName {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.meal-image {
+  width: 300px;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.meal-category,
+.meal-area {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.meal-instructions {
+  margin-bottom: 20px;
+}
+
+.ingredients {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 5px;
+}
+
+.measurement {
+  margin-right: 10px;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 20px;
+}
+
+.content-meal-list {
+  margin-top: 0;
+}
+
+.content-meal-list ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  row-gap: 1em;
+  column-gap: 1em;
+  padding: 0;
+  margin: 0;
+}
+
+.content-meal-list li {
+  font-family: "AndikaBold";
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.content-meal-list li:hover {
+  background-color: #dddd486b;
+}
+
+.content-meal-list .link {
+  text-decoration: none;
+  color: #212529;
+}
+
+.content-meal-list .image {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.content-meal-list .meal {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 20px;
+} */
