@@ -4,18 +4,18 @@ const mongoose = require("mongoose");
 const axios = require("axios");
 
 const app = express();
-// const dbURI =
-//   "mongodb+srv://User1:Password123!@recipe-app.epfrdq4.mongodb.net/?retryWrites=true&w=majority";
+const dbURI =
+  "mongodb+srv://User1:Password123!@recipe-app.epfrdq4.mongodb.net/?retryWrites=true&w=majority";
 
-// mongoose
-//   .connect(dbURI, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   })
-//   .then((result) => app.listen(5000))
-//   .catch((err) => console.log(err));
+mongoose
+  .connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((result) => app.listen(5000))
+  .catch((err) => console.log(err));
 
-app.listen(5000);
+// app.listen(5000);
 
 app.use(express.static("public"));
 app.use(express.json());
@@ -81,16 +81,43 @@ app.get("/search/:name", async (req, res) => {
   }
 });
 
-// const Recipe = require("./models/Recipe");
+const Recipe = require("./models/Recipe");
 
-// app.post("/favourite", (req, res) => {
-//   const recipe = new Recipe(req.body);
-//   recipe
-//     .save()
-//     .then((result) => {
-//       res.status(201).json();
-//     })
-//     .catch((err) => {
-//       res.status(500).json();
-//     });
-// });
+app.post("/favourite", (req, res) => {
+  const recipe = new Recipe(req.body);
+  recipe
+    .save()
+    .then((result) => {
+      res.status(201).json();
+    })
+    .catch((err) => {
+      res.status(500).json();
+    });
+});
+
+app.get("/unfavourite/:id", async (req, res) => {
+  try {
+    const response = await Recipe.deleteOne({ idMeal: req.params.id });
+    res.status(200).json(response);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/favourited/:id", async (req, res) => {
+  try {
+    const response = await Recipe.find({ idMeal: req.params.id });
+    res.status(200).json(response);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.get("/allFavourites/", async (req, res) => {
+  try {
+    const response = await Recipe.find();
+    res.status(200).json(response);
+  } catch (err) {
+    console.log(err);
+  }
+});

@@ -2,17 +2,15 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Categories.css";
+import axios from "axios";
 
 function Categories() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch("/categories")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data.categories);
-        console.log(data.categories);
-      });
+    axios.get("/categories").then((res) => {
+      setData(res.data.categories);
+    });
   }, []);
   return (
     <>

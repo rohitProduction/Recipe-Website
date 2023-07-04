@@ -2,38 +2,46 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Meal.css";
+import axios from "axios";
+import { MdFavorite, MdOutlineFavoriteBorder } from "react-icons/md";
 
 function Meal() {
   const { id } = useParams();
   const [data, setData] = useState(null);
-  // const [favourite, setFavourite] = useState(null);
+  const [favourite, setFavourite] = useState(false);
 
-  // const handleFavourite = (ingredients, measurements) => {
-  //   fetch("/favourite", {
-  //     id: data.idMeal,
-  //     name: data.strMeal,
-  //     area: data.strArea,
-  //     category: data.strCategory,
-  //     instructions: data.strInstructions,
-  //     thumbnail: data.strMealThumb,
-  //     ingredients: ingredients,
-  //     measurements: measurements,
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data.meals[0]);
-  //       setData(data.meals[0]);
-  //     });
-  // };
+  const handleFavourite = () => {
+    if (!favourite) {
+      const meal = {
+        idMeal: data.idMeal,
+        strMeal: data.strMeal,
+        strMealThumb: data.strMealThumb,
+      };
+      axios
+        .post("/favourite", meal)
+        .then(() => setFavourite(true))
+        .catch((err) => {
+          console.error(err);
+        });
+    } else {
+      axios.get("/unfavourite/" + data.idMeal).then(() => setFavourite(false));
+    }
+  };
 
   useEffect(() => {
-    fetch("/meal/" + id)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.meals[0]);
-        setData(data.meals[0]);
-      });
+    axios.get("/meal/" + id).then((res) => {
+      setData(res.data.meals[0]);
+    });
   }, []);
+
+  useEffect(() => {
+    axios.get("/favourited/" + id).then((res) => {
+      if (res.data.length > 0) {
+        setFavourite(true);
+      }
+    });
+  }, []);
+
   return (
     <div>
       {data ? (
@@ -45,10 +53,15 @@ function Meal() {
               src={data.strMealThumb}
               alt={data.strMeal}
             />
-            <p className="meal-category">{`Category: ${data.strCategory}`}</p>
+            <div className="favourite-container">
+              <p className="meal-category">{`Category: ${data.strCategory}`}</p>
+              <button onClick={handleFavourite} className="favorite-button">
+                Favourite:
+                {favourite ? <MdFavorite /> : <MdOutlineFavoriteBorder />}
+              </button>
+            </div>
             <p className="meal-area">{`Area of Origin: ${data.strArea}`}</p>
             <p className="meal-instructions">{`Instructions: ${data.strInstructions}`}</p>
-            {/* <button onClick={handleFavourite}> favourite</button> */}
           </section>
           <p className="ingredient-title">Ingredients</p>
           <ul>
@@ -67,21 +80,6 @@ function Meal() {
                 }
               })}
           </ul>
-          {/* <p>Measurements</p>
-          <ul>
-            {Object.keys(data)
-              .filter((v) => v.startsWith("strMeasure"))
-              .map((item, index) => {
-                const measurement = data[item];
-                if (measurement) {
-                  return (
-                    <li key={item}>
-                      <p className="measurements">{measurement}</p>
-                    </li>
-                  );
-                }
-              })}
-          </ul> */}
         </div>
       ) : (
         <div className="loading">Loading...</div>

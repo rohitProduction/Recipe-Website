@@ -3,38 +3,39 @@ const Schema = mongoose.Schema;
 
 const recipeSchema = new Schema(
   {
-    id: {
+    idMeal: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    strMeal: {
       type: String,
       required: true,
     },
-    name: {
+    strMealThumb: {
       type: String,
       required: true,
     },
-    area: {
-      type: String,
-      required: true,
-    },
-    category: {
-      type: String,
-      required: true,
-    },
-    instructions: {
-      type: String,
-      required: true,
-    },
-    thumbnail: {
-      type: String,
-      required: true,
-    },
-    ingredients: {
-      type: [String],
-      required: true,
-    },
-    measurements: {
-      type: [String],
-      required: true,
-    },
+    // category: {
+    //   type: String,
+    //   required: true,
+    // },
+    // instructions: {
+    //   type: String,
+    //   required: true,
+    // },
+    // thumbnail: {
+    //   type: String,
+    //   required: true,
+    // },
+    // ingredients: {
+    //   type: [String],
+    //   required: true,
+    // },
+    // measurements: {
+    //   type: [String],
+    //   required: true,
+    // },
   },
   { timestamps: true }
 );

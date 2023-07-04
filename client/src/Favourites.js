@@ -1,21 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 import MealList from "./components/MealList";
 import axios from "axios";
+import "./Favourites.css";
 
-function Category() {
-  const { name } = useParams();
+function Favourites() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    axios.get("/category/" + name).then((res) => {
-      setData(res.data.meals);
+    axios.get("/allFavourites/").then((res) => {
+      console.log(res.data);
+      setData(res.data);
     });
   }, []);
   return (
     <>
-      <h2 className="category-title">{name}</h2>
+      <h2 className="favourites-title">Favourites</h2>
       <div className="content-meal-list">
         {data ? (
           <MealList data={data}></MealList>
@@ -27,4 +27,4 @@ function Category() {
   );
 }
 
-export default Category;
+export default Favourites;

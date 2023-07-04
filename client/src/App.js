@@ -7,21 +7,9 @@ import Meal from "./Meal";
 import "./App.css";
 import Search from "./Search";
 import About from "./About";
+import Favourites from "./Favourites";
 
 function App() {
-  // const [data, setData] = useState([{}])
-  // useEffect(() => {
-  //   fetch("/members").then(
-  //     res => res.json()
-  //   ).then(
-  //     data => {
-  //       setData(data)
-  //       console.log(data)
-  //     }
-  //   )
-  // },[])
-  // const id = 52772;
-  // return <Meal id={id}></Meal>;
   return (
     <BrowserRouter>
       <div className="background">
@@ -33,6 +21,7 @@ function App() {
             <Route path="/meal/:id" element={<Meal />} />
             <Route path="/search/:name" element={<Search />} />
             <Route path="/about" element={<About />} />
+            <Route path="/favourites" element={<Favourites />} />
           </Routes>
         </div>
       </div>

@@ -18,7 +18,6 @@ function Navbar() {
         <div className="brand ">
           <Link className="nav-link" to="/">
             <AiFillHome />
-            {/* <img src={"/savory-haven-logo.png"} alt="Savory Haven" /> */}
           </Link>
         </div>
         <div className="nav-items">
